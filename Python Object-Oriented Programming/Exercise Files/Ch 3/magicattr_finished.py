@@ -15,6 +15,11 @@ class Book:
     def __str__(self):
         return f"{self.title} by {self.author}, costs {self.price}"
 
+    # The __repr__ function is used to return an object representation
+    # in its current state
+    def __repr__(self):
+        return f"title={self.title},author={self.author}, price={self.price}"
+
     # Called when an attribute is retrieved. Be aware that you can't
     # directly access the attr name otherwise a recursive loop is created
     def __getattribute__(self, name):

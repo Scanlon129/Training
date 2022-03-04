@@ -11,17 +11,21 @@ class Book:
     BOOK_TYPES = ("HARDCOVER", "PAPERBACK", "EBOOK")
     # TODO: double-underscore properties are hidden from other classes
     __booklist = None
-    # TODO: create a class method
-    @classmethod #this is referred to as a decorator
-    def getbooktypes(cls):
-        return cls.BOOK_TYPES
 
-    # TODO: create a static method
+    # static methods do not receive class or instance arguments
+    # and usually operate on data that is not instance- or
+    # class-specific
     @staticmethod #this is referred to as a decorator
     def getbooklist():
         if Book.__booklist == None:
             Book.__booklist = []
         return Book.__booklist
+
+    # class methods receive a class as their argument and can only
+    # operate on class-level data
+    @classmethod #this is referred to as a decorator
+    def getbooktypes(cls):
+        return cls.BOOK_TYPES
 
     # instance methods receive a specific object instance as an argument
     # and operate on data specific to that object instance
@@ -31,7 +35,9 @@ class Book:
     def __init__(self, title, booktype):
         self.title = title
         if (not booktype in Book.BOOK_TYPES):
-            raise ValueError(f'{booktype} is not a valid booktype')
+            raise ValueError(f"{booktype} is not a valid book type")
+        else:
+            self.booktype = booktype
 
 # TODO: access the class attribute
 print("Book Types: ", Book.getbooktypes())
