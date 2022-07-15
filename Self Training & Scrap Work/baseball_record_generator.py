@@ -17,9 +17,11 @@ def yankees_win_percentage(wins, losses):
     perc = wins/(wins+losses)
     return round(perc, 4)
 
-def calculate_possible_win_records_before_all_star_break(wins, losses):
+def calculate_possible_win_records_before_all_star_break(wins, losses, games_left):
     perc_benchmark = 0.724
-    while wins < 65 and losses < 29:
+    winning_records = 0
+    losing_records = 0
+    while games_left > 0:
         if yankees_win_percentage(wins,losses) > perc_benchmark:
             print(f' beats the record with {wins} wins: {losses} losses and a \n {yankees_win_percentage(wins,losses)} percentage.')
             winning_records += 1
@@ -28,6 +30,7 @@ def calculate_possible_win_records_before_all_star_break(wins, losses):
             print(f' loses to the record with {wins} wins: {losses} losses and a \n {yankees_win_percentage(wins,losses)} percentage.')
             losing_records += 1
             wins += 1
+        games_left -= 1
 
 def calculate_possible_win_record(wins,losses):
     winning_records = 0
@@ -46,5 +49,6 @@ def calculate_possible_win_record(wins,losses):
     print(f'{winning_records} winning records')
     print(f'{losing_records} losing records')
 
-calculate_possible_win_record(61,25)
+calculate_possible_win_records_before_all_star_break(63,24,3)
+# calculate_possible_win_record(62,26)
 print(0.724*162)
